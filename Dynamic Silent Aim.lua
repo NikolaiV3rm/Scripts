@@ -53,7 +53,8 @@ local function GetClosestBodyPartFromCursor()
     end
 end
 
-local OldNameCall; OldNameCall = hookmetamethod(game, "__namecall", function(...)
+local OldNameCall; 
+OldNameCall = hookmetamethod(game, "__namecall", function(...)
     local Method = getnamecallmethod()
     local Args = {...}
     if Method == "FindPartOnRayWithIgnoreList" and BodyPart ~= nil then
