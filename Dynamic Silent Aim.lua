@@ -28,12 +28,12 @@ local function Filter(Object)
 end
 
 local function MousePositionToVector2()
-	return Vector2.new(Mouse.X, Mouse.Y)
+    return Vector2.new(Mouse.X, Mouse.Y)
 end
 
 local function IsOnScreen(Object)
-	local IsOnScreen = Camera:WorldToScreenPoint(Object.Position)
-	return IsOnScreen
+    local IsOnScreen = Camera:WorldToScreenPoint(Object.Position)
+    return IsOnScreen
 end
 
 local function GetClosestBodyPartFromCursor()
@@ -42,7 +42,7 @@ local function GetClosestBodyPartFromCursor()
         if v ~= LocalPlayer and v.Team ~= LocalPlayer.Team and v.Character and v.Character:FindFirstChild("Humanoid") then
             for k,  x in next, v.Character:GetChildren() do
                 if Filter(x) and IsOnScreen(x) then
-					          local MouseVector = MousePositionToVector2()
+                    local MouseVector = MousePositionToVector2()
                     local Distance = (WTS(x) - MouseVector).Magnitude
                     if Distance < ClosestDistance then
                         ClosestDistance = Distance
