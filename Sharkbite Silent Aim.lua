@@ -33,14 +33,14 @@ local function GetClosestSharkFromCursor()
 end
 
 local oldNameCall;
-oldNameCall = hookmetamethod(game, "__namecall", function(...)
+oldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
    local Method = getnamecallmethod()
    local Arguments = {...}
    if Method == "FindPartOnRay" and Body ~= nil then
-      Arguments[2] = PositionToRay(workspace.CurrentCamera.CFrame.Position, Body.Position)
-      return oldNameCall(unpack(Arguments))
+      Arguments[1] = PositionToRay(workspace.CurrentCamera.CFrame.Position, Body.Position)
+      return oldNameCall(Self, unpack(Arguments))
    end
-   return oldNameCall(...)
+   return oldNameCall(Self, ...)
 end)
 
 RunService:BindToRenderStep("Silent Aim", 120, GetClosestSharkFromCursor)
