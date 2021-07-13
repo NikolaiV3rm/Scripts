@@ -35,14 +35,14 @@ local function GetClosestZombieFromCursor()
 end
 
 local oldNameCall;
-oldNameCall = hookmetamethod(game, "__namecall", function(...)
+oldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
    local Method = getnamecallmethod()
    local Arguments = {...}
    if Method == "FindPartOnRayWithIgnoreList" and Part ~= nil then
-      Arguments[2] = PositionToRay(Camera.CFrame.Position, Part.Position)
-      return oldNameCall(unpack(Arguments))
+      Arguments[] = PositionToRay(Camera.CFrame.Position, Part.Position)
+      return oldNameCall(Self, unpack(Arguments))
    end
-   return oldNameCall(...)
+   return oldNameCall(Self, ...)
 end)
 
 RunService:BindToRenderStep("Silent Aim", 120, GetClosestZombieFromCursor)
