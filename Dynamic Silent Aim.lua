@@ -54,14 +54,14 @@ local function GetClosestBodyPartFromCursor()
 end
 
 local OldNameCall; 
-OldNameCall = hookmetamethod(game, "__namecall", function(...)
+OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
     local Method = getnamecallmethod()
     local Args = {...}
     if Method == "FindPartOnRayWithIgnoreList" and BodyPart ~= nil then
-        Args[2] = PositionToRay(Camera.CFrame.Position, BodyPart.Position)
-        return OldNameCall(unpack(Args))
+        Args[1] = PositionToRay(Camera.CFrame.Position, BodyPart.Position)
+        return OldNameCall(Self, unpack(Args))
     end
-    return OldNameCall(...)
+    return OldNameCall(Self, ...)
 end)
 
 RunService:BindToRenderStep("Dynamic Silent Aim", 120, GetClosestBodyPartFromCursor)
