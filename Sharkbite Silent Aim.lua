@@ -38,7 +38,7 @@ oldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
     local Method = getnamecallmethod()
     local Arguments = {...}
     if Method == "FindPartOnRay" and Body then
-        Arguments[1] = PositionToRay(workspace.CurrentCamera.CFrame.Position, Body.Position)
+        Arguments[1] = PositionToRay(Camera.CFrame.Position, Body.Position)
         return oldNameCall(Self, unpack(Arguments))
     end
     return oldNameCall(Self, ...)
