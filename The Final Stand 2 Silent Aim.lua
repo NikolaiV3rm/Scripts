@@ -8,7 +8,7 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
 local Zombies = workspace.Zombies
-local Part = nil
+local Part
 
 local function WTS(Object)
    local ObjectVector = Camera:WorldToScreenPoint(Object.Position)
@@ -38,7 +38,7 @@ local oldNameCall;
 oldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
    local Method = getnamecallmethod()
    local Arguments = {...}
-   if Method == "FindPartOnRayWithIgnoreList" and Part ~= nil then
+   if Method == "FindPartOnRayWithIgnoreList" and Part then
       Arguments[1] = PositionToRay(Camera.CFrame.Position, Part.Position)
       return oldNameCall(Self, unpack(Arguments))
    end
