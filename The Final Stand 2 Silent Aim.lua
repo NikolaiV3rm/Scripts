@@ -27,13 +27,13 @@ local function GetClosestZombieFromCursor()
          if v.Zombie.Health ~= 0 then
             local Magnitude = (WTS(v.Head) - Vector2.new(Mouse.X, Mouse.Y)).Magnitude
             if Magnitude <= ClosestDistance then
-               Part = v.Head
-               ClosestDistance = Magnitude
-            end
-         end
-      end
-   end
-end
+               Part = v.Head;
+               ClosestDistance = Magnitude;
+            end;
+         end;
+      end;
+   end;
+end;
 
 local oldNameCall;
 oldNameCall = hookmetamethod(game, "__namecall", newcclosure(function(Self, ...)
@@ -41,12 +41,12 @@ oldNameCall = hookmetamethod(game, "__namecall", newcclosure(function(Self, ...)
    local Arguments = {...}
    if Method == "Kick" then
        return -- // 3 line bypass ftw
-   end
+   end;
    if Method == "FindPartOnRayWithIgnoreList" and Part then
       Arguments[1] = PositionToRay(Camera.CFrame.Position, Part.Position)
       return oldNameCall(Self, unpack(Arguments))
-   end
+   end;
    return oldNameCall(Self, ...)
 end));
 
-RunService:BindToRenderStep("Silent Aim", 120, GetClosestZombieFromCursor)
+RunService:BindToRenderStep("Silent Aim", 120, GetClosestZombieFromCursor);
