@@ -14,11 +14,11 @@ local Part;
 local function WTS(Object)
    local ObjectVector = Camera:WorldToScreenPoint(Object.Position)
    return Vector2.new(ObjectVector.X, ObjectVector.Y)
-end
+end;
 
 local function PositionToRay(Origin, Position)
    return Ray.new(Origin, (Position - Origin).Unit * 600)
-end
+end;
 
 local function GetClosestZombieFromCursor()
    local ClosestDistance = math.huge
