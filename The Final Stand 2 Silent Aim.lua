@@ -1,14 +1,15 @@
+
 local function GetService(Name)
    return game:GetService(Name)
-end
+end;
 
-local Players = GetService("Players")
-local RunService = GetService("RunService")
-local LocalPlayer = Players.LocalPlayer
-local Mouse = LocalPlayer:GetMouse()
-local Camera = workspace.CurrentCamera
-local Zombies = workspace.Zombies
-local Part
+local Players = GetService("Players");
+local RunService = GetService("RunService");
+local LocalPlayer = Players.LocalPlayer;
+local Mouse = LocalPlayer:GetMouse();
+local Camera = workspace.CurrentCamera;
+local Zombies = workspace.Zombies;
+local Part;
 
 local function WTS(Object)
    local ObjectVector = Camera:WorldToScreenPoint(Object.Position)
@@ -35,14 +36,17 @@ local function GetClosestZombieFromCursor()
 end
 
 local oldNameCall;
-oldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+oldNameCall = hookmetamethod(game, "__namecall", newcclosure(function(Self, ...)
    local Method = getnamecallmethod()
    local Arguments = {...}
+   if Method == "Kick" then
+       return -- // 3 line bypass ftw
+   end
    if Method == "FindPartOnRayWithIgnoreList" and Part then
       Arguments[1] = PositionToRay(Camera.CFrame.Position, Part.Position)
       return oldNameCall(Self, unpack(Arguments))
    end
    return oldNameCall(Self, ...)
-end)
+end));
 
 RunService:BindToRenderStep("Silent Aim", 120, GetClosestZombieFromCursor)
