@@ -11,7 +11,7 @@
  local RunService = GetService("RunService");
  local LocalPlayer = Players.LocalPlayer;
  local Mouse = LocalPlayer:GetMouse();
- local NetworkManager = require(LocalPlayer.PlayerScripts.LocalManager.NetworkManager)
+ local NetworkManager = require(LocalPlayer.PlayerScripts.LocalManager.NetworkManager);
  local Camera = workspace.CurrentCamera;
  local Zombies = workspace.Zombies;
  local Part;
