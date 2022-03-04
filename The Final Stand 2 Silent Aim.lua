@@ -1,6 +1,9 @@
  --[[
      Note for B_Ketchup:
      Please just give up on patching it no matter what you can do on the client it can be bypassed with hooking and spoofing :)
+     -----------------------------------------
+
+     I might rewrite when I'm really bored lol. God looking at this code hurts my fucking eyes.
  ]]
  
  local function GetService(Name)
@@ -54,7 +57,7 @@
     if Method == "Kick" then
         return
     end
-    if Method == "FindPartOnRayWithIgnoreList" and Part then
+    if Method == "FindPartOnRayWithIgnoreList" and typeof(Arguments[1]) == "Ray" and Arguments[1].Direction ~= Vector3.new(0, 0, 0) and Part then
        Arguments[1] = PositionToRay(Camera.CFrame.Position, Part.Position)
        return oldNameCall(Self, unpack(Arguments))
     end;
