@@ -45,8 +45,8 @@
 
  local OldHook; OldHook = hookfunc(NetworkManager.PassData, function(Self, ...)
     local Arguments = {...}
-    if tostring(Arguments[1]) == "WeaponAttack" and Arguments[2][3].SA ~= nil then
-        Arguments[2][3].SA = false -- Quote: Improved anti-cheat (B_Ketchup)
+    if tostring(Arguments[1]) == "WeaponAttack" and Arguments[2][3].SA2 ~= nil then
+        Arguments[2][3].SA2 = false -- Quote: Improved anti-cheat (B_Ketchup)
     end;
     return OldHook(Self, ...)
  end);
